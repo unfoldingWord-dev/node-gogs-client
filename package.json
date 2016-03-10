@@ -1,0 +1,29 @@
+{
+  "name": "gogs-client",
+  "version": "0.0.1",
+  "description": "A client library for interacting with the gogs REST api.",
+  "main": "./lib/gogs-client.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unfoldingWord-dev/node-gogs-client.git"
+  },
+  "keywords": [
+    "gogs",
+    "api",
+    "rest"
+  ],
+  "author": "Joel Lonbeck",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/unfoldingWord-dev/node-gogs-client/issues"
+  },
+  "homepage": "https://github.com/unfoldingWord-dev/node-gogs-client#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.4.5"
+  }
+}
