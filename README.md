@@ -25,3 +25,12 @@ A client library for interacting with the [Gogs](https://gogs.io) REST api. This
 ```
 npm install gogs-client
 ```
+
+## Testing
+In order to run the tests you'll need to create a `config.json` file in the test directory.
+See the `sample.config.json` to get started.
+You probably only need to change where the api points to and the credentials for the admin user.
+Once configured you may run the following:
+```
+gulp test
+```

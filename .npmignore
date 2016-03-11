@@ -1,1 +1,3 @@
 tests/config.json
+.idea
+*.tgz
