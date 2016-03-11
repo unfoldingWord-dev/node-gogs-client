@@ -30,7 +30,7 @@ npm install gogs-client
 
 ## Examples
 ```
-let api = new gogsClient('https://git.door43.org/api/v1');
+let api = new gogsClient('https://try.gogs.io/api/v1');
 api.searchRepos('gogs', 0, 5).then(function(list) {
   console.log(list);
 });
