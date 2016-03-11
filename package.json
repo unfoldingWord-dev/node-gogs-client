@@ -13,7 +13,8 @@
   "keywords": [
     "gogs",
     "api",
-    "rest"
+    "rest",
+    "client"
   ],
   "author": "Joel Lonbeck",
   "license": "GPL-2.0",

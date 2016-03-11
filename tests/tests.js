@@ -113,27 +113,57 @@
     });
 
     it('should create a token', function(done) {
-      api.createToken(demoToken, demoUser);
+      api.createToken(demoToken, demoUser).then(function(token) {
+        assert(token != null, true);
+        assert(token.name, demoToken.name);
+      }).then(done, done);
     });
 
     it('should list a user\'s tokens', function(done) {
-      done();
+      api.listTokens(demoUser).then(function(list) {
+        assert(list.length > 0);
+      }).then(done, done);
+    });
+
+    it('should get user using a token', function(done) {
+      api.listTokens(demoUser).then(function(list) {
+        return api.getUser(demoUser, {username: demoUser.username, token: list[0].sha1})
+      }).then(function(user) {
+        assert(user != null);
+        assert(user.email, demoUser.email);
+      }).then(done, done);
     });
 
     it('should create a public key', function(done) {
-      done();
+      api.createPublicKey(demoKey, demoUser).then(function(key) {
+        assert(key != null);
+        assert(key.title, demoKey.title);
+      }).then(done, done);
     });
 
     it('should list a user\'s public keys', function(done) {
-      done();
+      api.listPublicKeys(demoUser).then(function(list) {
+        assert(list.length > 0);
+      }).then(done, done);
     });
 
     it('should retrieve a user\'s public key', function(done) {
-      done();
+      api.listPublicKeys(demoUser).then(function(list) {
+        return api.getPublicKey(list[0], demoUser)
+      }).then(function(key) {
+        assert(key != null);
+      }).then(done, done);
     });
 
     it('should delete a user\'s public key', function(done) {
-      done();
+      api.listPublicKeys(demoUser).then(function(list) {
+        return api.deletePublicKey(list[0], demoUser)
+      }).then(function() {
+        // ensure key was deleted
+        return api.listPublicKeys(demoUser);
+      }).then(function(list) {
+        assert(list.length === 0);
+      }).then(done, done);
     });
 
     it('should delete a user', function(done) {
