@@ -20,3 +20,8 @@ A client library for interacting with the [Gogs](https://gogs.io) REST api. This
 
 ## Requirements
 * ECMAScript 6
+
+## Installation
+```
+npm install gogs-client
+```
