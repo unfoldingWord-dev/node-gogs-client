@@ -1,6 +1,8 @@
 # node-gogs-client
 A client library for interacting with the [Gogs](https://gogs.io) REST api. This library is written to communicate according to the api defined in [gogits/go-gogs-client](https://github.com/gogits/go-gogs-client/wiki).
 
+Everything returns a promise!
+
 ##Supported Operations
 * create user
 * search users
@@ -24,6 +26,14 @@ A client library for interacting with the [Gogs](https://gogs.io) REST api. This
 ## Installation
 ```
 npm install gogs-client
+```
+
+## Examples
+```
+let api = new gogsClient('https://git.door43.org/api/v1');
+api.searchRepos('gogs', 0, 5).then(function(list) {
+  console.log(list);
+});
 ```
 
 ## Testing
