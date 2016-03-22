@@ -61,6 +61,6 @@ To get you started here are some basic objects and their properites
 
 Not every property is required. The token will always take precedence over the username and password when used to authenticate a request.
 
-Some methods require two users, one of which is the auth user. This allows you to control what account is authenticating the request. For example an admin user can create a repository for another user etc. However you choose to authenticate a request you must provide either a token or a username and password.
+Some methods require two users, one of which is the auth user. This allows you to control what account is authenticating the request. The user object used to authenticate a request must provide either a token or a username and password.
 
 All methods are documented and indicate which properties are required for each argument.
