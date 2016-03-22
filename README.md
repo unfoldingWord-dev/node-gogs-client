@@ -19,10 +19,6 @@ Everything returns a promise!
 * list public keys
 * delete public key
 
-
-## Requirements
-* ECMAScript 6
-
 ## Installation
 ```
 npm install gogs-client

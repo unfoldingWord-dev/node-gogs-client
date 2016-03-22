@@ -3,11 +3,11 @@
  */
 'use strict';
 ;(function () {
-  let assert = require('assert'),
+  var assert = require('assert'),
       _ = require('lodash'),
       gogsAPI = require('../');
 
-  let config = {};
+  var config = {};
   try {
     config = require('../tests/config');
   } catch (e) {
@@ -17,7 +17,7 @@
 
   describe('@Gogs', function() {
     this.timeout(10000);
-    let api,
+    var api,
       demoUser = _.get(config, 'demoUser', {}),
       adminUser = _.get(config, 'adminUser', {}),
       demoRepo = _.get(config, 'demoRepo', {}),
@@ -68,7 +68,7 @@
     });
 
     it('should search respositories', function(done) {
-      let limit = 5;
+      var limit = 5;
       api.searchRepos('uw', 0, limit).then(function(list) {
         assert(list.length > 0);
         assert(list.length <= limit);
