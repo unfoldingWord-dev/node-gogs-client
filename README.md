@@ -5,6 +5,7 @@ Everything returns a promise!
 
 ##Supported Operations
 * create user
+* edit user
 * search users
 * get user
 * delete user

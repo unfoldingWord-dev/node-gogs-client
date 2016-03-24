@@ -1,6 +1,6 @@
 {
   "name": "gogs-client",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A client library for interacting with the gogs REST api.",
   "main": "./lib/gogs-client.js",
   "scripts": {

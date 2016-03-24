@@ -37,6 +37,14 @@
       }).then(done, done);
     });
 
+    it('should update a user', function(done) {
+      var fullName = 'My test full name';
+      demoUser.full_name = fullName;
+      api.editUser(demoUser, adminUser).then(function(user) {
+        assert.equal(user.full_name, fullName);
+      }).then(done, done);
+    });
+
     it('should search for users', function(done) {
       api.searchUsers(demoUser.username, 5, null).then(function(list) {
         assert(list.length > 0);
@@ -172,17 +180,20 @@
       }).then(done, done);
     });
 
-    it('should not error when deleting unknown user', function(done) {
+    it('should error when deleting unknown user', function(done) {
       api.deleteUser(fakeUser, adminUser).then(function() {
-        assert(true);
-      }).then(done, done);
+        assert(false);
+      }).then(done, function(result) {
+        assert(result.status === 404);
+        done();
+      });
     });
 
     it('should not allow user to delete self', function(done) {
       api.deleteUser(adminUser, adminUser).then(function() {
         assert(false);
       }).then(done, function(result) {
-        assert(true);
+        assert(result === 'missing arguments');
         done();
       });
     });
