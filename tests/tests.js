@@ -133,9 +133,18 @@
       }).then(done, done);
     });
 
-    it('should get user using a token', function(done) {
+    it('should get user using a token string', function(done) {
       api.listTokens(demoUser).then(function(list) {
         return api.getUser(demoUser, {username: demoUser.username, token: list[0].sha1})
+      }).then(function(user) {
+        assert(user != null);
+        assert.equal(user.email, demoUser.email);
+      }).then(done, done);
+    });
+
+    it('should get a user using a token object', function(done) {
+      api.listTokens(demoUser).then(function(list) {
+        return api.getUser(demoUser, {username: demoUser.username, token: list[0]})
       }).then(function(user) {
         assert(user != null);
         assert.equal(user.email, demoUser.email);
