@@ -37,6 +37,15 @@
       }).then(done, done);
     });
 
+    it('should not create a user', function(done) {
+      api.createUser(fakeUser, {}, false).then(function(user) {
+        assert(user === null);
+      }).then(done, function(result) {
+        assert(true);
+        done();
+      });
+    });
+
     it('should update a user', function(done) {
       var fullName = 'My test full name';
       demoUser.full_name = fullName;
@@ -75,7 +84,7 @@
       });
     });
 
-    it('should search respositories', function(done) {
+    it('should search repositories', function(done) {
       var limit = 5;
       api.searchRepos('uw', 0, limit).then(function(list) {
         assert(list.length > 0);
@@ -183,6 +192,15 @@
       }).then(done, done);
     });
 
+    it('should not allow user to delete self', function(done) {
+      api.deleteUser(demoUser, demoUser).then(function() {
+        assert(false);
+      }).then(done, function(result) {
+        assert(result === 'missing arguments');
+        done();
+      });
+    });
+
     it('should delete a user', function(done) {
       api.deleteUser(demoUser, adminUser).then(function() {
         assert(true);
@@ -194,15 +212,6 @@
         assert(false);
       }).then(done, function(result) {
         assert(result.status === 404);
-        done();
-      });
-    });
-
-    it('should not allow user to delete self', function(done) {
-      api.deleteUser(adminUser, adminUser).then(function() {
-        assert(false);
-      }).then(done, function(result) {
-        assert(result === 'missing arguments');
         done();
       });
     });
