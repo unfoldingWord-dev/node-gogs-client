@@ -21,7 +21,8 @@
   },
   "fakeUser": {
     "username": "fake-user-3542343543143553446",
-    "password": "fake-password"
+    "password": "fake-password",
+    "email": "my@fake.email"
   },
   "demoToken": {
     "name": "demo-token-6353445353443"
