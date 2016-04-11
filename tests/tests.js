@@ -19,6 +19,7 @@
     this.timeout(10000);
     var api,
       demoUser = _.get(config, 'demoUser', {}),
+      restrictedAdminUser = _.get(config, 'restrictedAdminUser', {}),
       adminUser = _.get(config, 'adminUser', {}),
       demoRepo = _.get(config, 'demoRepo', {}),
       fakeRepo = _.get(config, 'fakeRepo', {}),
@@ -31,9 +32,10 @@
       done();
     });
 
-    it('should create a user', function(done) {
+    it('v1./v2. should create a user', function(done) {
       api.createUser(demoUser, adminUser, false).then(function(user) {
         assert.equal(user.username, demoUser.username);
+        // The two assertions below are v2 api specific
         assert.equal(user.full_name, demoUser.full_name);
         assert(user.full_name !== '');
       }).then(done, done);
@@ -198,7 +200,7 @@
       api.deleteUser(demoUser, demoUser).then(function() {
         assert(false);
       }).then(done, function(result) {
-        assert(result === 'missing arguments');
+        assert.equal(result, 'missing arguments');
         done();
       });
     });
@@ -213,9 +215,33 @@
       api.deleteUser(fakeUser, adminUser).then(function() {
         assert(false);
       }).then(done, function(result) {
-        assert(result.status === 404);
+        assert.equal(result.status, 404);
         done();
       });
+    });
+
+    it('v2. should create user with restricted token', function(done) {
+      api.createUser(demoUser, restrictedAdminUser, false).then(function(user) {
+        assert.equal(user.username, demoUser.username);
+        // The two assertions below are v2 api specific
+        assert.equal(user.full_name, demoUser.full_name);
+        assert(user.full_name !== '');
+      }).then(done, done);
+    });
+
+    it('v2. should not allow deleting user with restricted token', function(done) {
+      api.deleteUser(demoUser, restrictedAdminUser).then(function() {
+        assert(false);
+      }).then(done, function(result) {
+        assert.equal(result.status, 401);
+        done();
+      });
+    });
+
+    it('should delete a user.. cleanup', function(done) {
+      api.deleteUser(demoUser, adminUser).then(function() {
+        assert(true);
+      }).then(done, done);
     });
 
   });

@@ -43,6 +43,8 @@ Once configured you may run the following:
 gulp test
 ```
 
+> NOTE: some tests are designed to test custom changes to the api used in git.door43.org. These tests are prefixed with `v2`. Although these tests may fail when ran against a v1 gogs api the library should still function correctly with a v1 api, you just won't have v2 functionality.
+
 ##Method Arguments/Results
 The format of data passed into/out-of a method closely matches that of the [GOGS API](https://github.com/gogits/go-gogs-client/wiki).
 
