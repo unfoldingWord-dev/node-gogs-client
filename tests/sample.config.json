@@ -3,6 +3,7 @@
   "demoUser": {
     "username": "demo-user-3635445323443554",
     "password": "demo-password",
+    "full_name": "Demo User",
     "email": "demo@example.com"
   },
   "adminUser": {
