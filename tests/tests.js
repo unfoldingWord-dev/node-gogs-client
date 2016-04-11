@@ -34,8 +34,8 @@
     it('should create a user', function(done) {
       api.createUser(demoUser, adminUser, false).then(function(user) {
         assert.equal(user.username, demoUser.username);
-        // assert.equal(user.full_name, demoUser.full_name);
-        // assert(user.full_name !== '');
+        assert.equal(user.full_name, demoUser.full_name);
+        assert(user.full_name !== '');
       }).then(done, done);
     });
 
