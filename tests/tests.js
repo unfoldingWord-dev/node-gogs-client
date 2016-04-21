@@ -18,14 +18,14 @@
   describe('@Gogs', function() {
     this.timeout(10000);
     var api,
-      demoUser = _.get(config, 'demoUser', {}),
-      restrictedAdminUser = _.get(config, 'restrictedAdminUser', {}),
-      adminUser = _.get(config, 'adminUser', {}),
-      demoRepo = _.get(config, 'demoRepo', {}),
-      fakeRepo = _.get(config, 'fakeRepo', {}),
-      demoToken = _.get(config, 'demoToken', {}),
-      demoKey = _.get(config, 'demoKey', {}),
-      fakeUser = _.get(config, 'fakeUser', {});
+        demoUser = _.get(config, 'demoUser', {}),
+        restrictedAdminUser = _.get(config, 'restrictedAdminUser', {}),
+        adminUser = _.get(config, 'adminUser', {}),
+        demoRepo = _.get(config, 'demoRepo', {}),
+        fakeRepo = _.get(config, 'fakeRepo', {}),
+        demoToken = _.get(config, 'demoToken', {}),
+        demoKey = _.get(config, 'demoKey', {}),
+        fakeUser = _.get(config, 'fakeUser', {});
 
     before(function(done) {
       api = new gogsAPI(_.get(config, 'api', 'https://try.gogs.io/api/v1'));
@@ -38,7 +38,7 @@
         // The two assertions below are v2 api specific
         assert.equal(user.full_name, demoUser.full_name);
         assert(user.full_name !== '');
-		done();
+		    done();
       }).catch(done);
     });
 
@@ -195,17 +195,13 @@
         return api.listPublicKeys(demoUser);
       }).then(function(list) {
         assert(list.length === 0);
-		done();
+		    done();
       }).catch(done);
     });
 
-    it('should not allow user to delete self', function(done) {
-      api.deleteUser(demoUser, demoUser).then(function() {
-        assert(false);
-		done();
-      }).catch(function(result) {
-        assert(true);
-        done();
+    it('should not allow user to delete self', function() {
+      return api.deleteUser(demoUser, demoUser).then(assert.fail, function () {
+        return 'passed!';
       });
     });
 
