@@ -12,6 +12,7 @@ Everything returns a promise!
 * search repositories
 * list user repositories
 * create repository
+* get repository
 * delete repository
 * create application token
 * list application tokens
