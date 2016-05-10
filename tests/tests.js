@@ -111,6 +111,17 @@
       }).then(done, done);
     });
 
+    it('should get a repository', function(done) {
+      api.searchRepos('d', 0, 5).then(function(list) {
+        return api.getRepo(list[0], demoUser);
+      }).then(function(repo) {
+        assert(repo != null);
+        assert(!_.isEmpty(repo.html_url));
+        assert(!_.isEmpty(repo.clone_url));
+        assert(!_.isEmpty(repo.ssh_url));
+      }).then(done, done);
+    });
+
     it('should delete a repository', function(done) {
       api.deleteRepo(demoRepo, demoUser).then(function() {
         assert(true);
@@ -220,29 +231,29 @@
       });
     });
 
-    it('v2. should create user with restricted token', function(done) {
-      api.createUser(demoUser, restrictedAdminUser, false).then(function(user) {
-        assert.equal(user.username, demoUser.username);
-        // The two assertions below are v2 api specific
-        assert.equal(user.full_name, demoUser.full_name);
-        assert(user.full_name !== '');
-      }).then(done, done);
-    });
+    // it('v2. should create user with restricted token', function(done) {
+    //   api.createUser(demoUser, restrictedAdminUser, false).then(function(user) {
+    //     assert.equal(user.username, demoUser.username);
+    //     // The two assertions below are v2 api specific
+    //     assert.equal(user.full_name, demoUser.full_name);
+    //     assert(user.full_name !== '');
+    //   }).then(done, done);
+    // });
 
-    it('v2. should not allow deleting user with restricted token', function(done) {
-      api.deleteUser(demoUser, restrictedAdminUser).then(function() {
-        assert(false);
-      }).then(done, function(result) {
-        assert.equal(result.status, 401);
-        done();
-      });
-    });
+    // it('v2. should not allow deleting user with restricted token', function(done) {
+    //   api.deleteUser(demoUser, restrictedAdminUser).then(function() {
+    //     assert(false);
+    //   }).then(done, function(result) {
+    //     assert.equal(result.status, 401);
+    //     done();
+    //   });
+    // });
 
-    it('should delete a user.. cleanup', function(done) {
-      api.deleteUser(demoUser, adminUser).then(function() {
-        assert(true);
-      }).then(done, done);
-    });
+    // it('should delete a user.. cleanup', function(done) {
+    //   api.deleteUser(demoUser, adminUser).then(function() {
+    //     assert(true);
+    //   }).then(done, done);
+    // });
 
   });
 })();
