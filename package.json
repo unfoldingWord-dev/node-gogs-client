@@ -1,7 +1,7 @@
 {
   "name": "gogs-client",
   "version": "0.5.1",
-  "descriptio": "A client library for interacting with the gogs REST api.",
+  "description": "A client library for interacting with the gogs REST api.",
   "main": "./lib/gogs-client.js",
   "scripts": {
     "test": "gulp test"
