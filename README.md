@@ -5,7 +5,7 @@ A client library for interacting with the [Gogs](https://gogs.io) REST api. This
 
 Everything returns a promise!
 
-##Supported Operations
+## Supported Operations
 * create user
 * edit user
 * search users
@@ -53,7 +53,7 @@ The format of data passed into/out-of a method closely matches that of the [GOGS
 
 To get you started here are some basic objects and their properites
 
-###User
+### User
 ```
 {
   "username": ""
